@@ -1,0 +1,192 @@
+{% load static %}	
+<!DOCTYPE html>
+	<html>
+		<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<title>Profile Overview</title>
+
+	<!-- CSS  -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="{% static 'mysite/css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="{% static 'mysite/css/style.css'%}" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="{% static 'mysite/js/materialize.js' %}"></script>
+	<script src="{% static 'mysite/js/init.js' %}"></script>
+</head>
+<body>
+	<div class="grey lighten-4">
+	<nav class="white" role="navigation">
+		<div class="nav-wrapper container "><a id="logo-container" href="#" class="brand-logo">Logo</a>
+			<ul class="right hide-on-med-and-down">
+				<li><a href="#">Navbar Link</a></li>
+			</ul>
+
+			<ul id="nav-mobile" class="sidenav">
+				<li><a href="#">Navbar Link</a></li>
+			</ul>
+			<a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+		</div>
+	</nav>
+
+
+
+			<div class="container">
+				<div class = "row">
+					<div class="section">
+				<div class = "col s12 m12 l8">
+			 
+			<div class="row">
+				<div class="card-panel ">
+			
+		<div class = "row">
+			<div class= "col s4 m3 l3"><img src="{% static 'mysite/images/test.jpg'%}" alt="" class="circle responsive-img" ></div>
+			<div class = "col s12 m8 l8 ">
+				<div class = "row"><span class="bold">{{candidate.name}}</span><br><br>
+			<span class="grey-text">Working as {%for ex in experience %}{{ex.job_role}}  {%endfor%} and studied in {%for ed in education%}{{ed.institute_name}}  {%endfor%} 10+ years of business and tech experience</span><br><br>
+			<span class="grey-text"><i class=" tiny material-icons">location_on</i>{{candidate.location_city}}, {{candidate.location_country}}.</span></div>
+		</div></div>
+				 <div class = "container">
+		<div class="row">
+			<div class="col left">
+				<a class="waves-effect waves-light btn-small blue" ><i class="material-icons left">perm_contact_calendar</i>Follow</a>
+				<a class="btn-floating btn-small waves-effect waves-light blue"  ><i class="material-icons">send</i></a>
+				<a class="btn-floating btn-small waves-effect waves-light blue" ><i class="material-icons">share</i></a>
+			</div>
+			<div class = "col right">
+				<span class="right-align"><div class="row"><div class = "col s4 l4 m4 "><h6>201</h6>Followers
+				</div>
+				<div class = " right col s4 l4 m4 "><h6>229</h6>Following</div></div></span>
+			</div>
+
+		</div>
+
+
+</div>
+</div>
+</div>
+<div class="row">
+
+  
+    
+
+  <div class="card">
+    <div class="card-tabs">
+      <ul class="tabs tabs-fixed-width ">
+        <li class="tab grey-text"><a href="#test4">Overview</a></li>
+        <li class="tab"><a href="#test6">Followers</a></li>
+        <li class="tab"><a class="active" href="#test5">Following</a></li>
+              </ul>
+    </div>
+    <div class="card-content grey lighten-4">
+      <div id="test4">
+      	
+
+      	<div class="row">
+    <div class="col s12 m12 l12">
+      <div class="card-panel white">
+        <span class="black-text">
+          <h5>Basic Profile</h5>
+          <hr><br>
+        	
+         <ul class="collection">
+      
+      <li class="collection-item"><span class="bold">Profile</span>
+			<p>Designation <br>
+				 Place
+			</p></li>
+			<li class="collection-item"><span class="bold">Name</span>
+			<p>Designation <br>
+				 Place
+			</p></li>
+			<li class="collection-item"><span class="bold">Name</span>
+			<p>Designation <br>
+				 Place
+			</p></li>
+
+    </ul>
+
+        </span>
+      </div>
+    </div>
+  </div>
+
+      	<div class="row">
+    <div class="col s12 m12 l12">
+      <div class="card-panel white">
+        <span class="black-text">
+          <h5>Education</h5>
+          <hr><br>
+        	
+         <ul class="collection">
+      	{% for ed in education %}
+      <li class="collection-item"><span class="bold">{{ed.institute_name}}</span>
+      <p>{{ed.institute_location}}<br>{{ed.start_year}}-{{ed.end_year}}</p></li>
+      {%endfor%}
+
+
+    </ul>
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+        	<div class="row">
+    <div class="col s12 m12 l12">
+      <div class="card-panel white">
+        <span class="black-text">
+          <h5>Experience</h5>
+          <hr><br>
+        
+        
+         <ul class="collection">
+     
+     
+      {% for ex in experience %}
+      <li class="collection-item"><span class="bold">{{ex.company_name}}</span>
+      <p>{{ex.job_role}}<br>{{ex.caompany_location}}{{ex.company_location}}</p></li>
+      {%endfor%}
+
+    	</ul>
+
+
+        </span>
+      </div>
+    </div>
+  </div>
+
+      </div>
+      
+    </div>
+  </div>
+
+
+</div>
+</div>
+<div class= "col s12 m12 l4">
+	 <div class="card-panel ">
+<h5>Similar Profiles</h5>
+<hr><br>
+<ul class="collection">
+      {% for candidate in similar_candidates%}
+	<a href="{% url 'index' candidate.id %}">
+		<li class="collection-item avatar">
+      <img src="{% static 'mysite/images/test.jpg' %}" alt="" class="circle responsive-img">
+			<!-- <a href="{% url 'index' candidate.id %}"><span class="bold">{{candidate.name}}</span></a> -->
+			<span class="bold">{{candidate.name}}</span>
+			<p>{{candidate.location_city}}<br>
+			</p>
+		 
+		</li>
+	   {%endfor%}
+	</a>
+
+</div>
+
+
+</div>
+		
+
+		</body>
+	</html>
