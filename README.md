@@ -1,6 +1,7 @@
 # Django-assignment
 First start django virtual environment then
 cd Django-assignment/project/
+
 then run the following commands:
 
 python manage.py makemigrations mysite
